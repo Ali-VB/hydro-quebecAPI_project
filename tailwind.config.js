@@ -7,13 +7,13 @@ module.exports = {
     extend: {
       colors: {
         "darkBlue": "#282962",
-        "darkGreen":"#3D6C88",
-        "lightBackground":"rgba(126, 148, 165, 0.49)",
+        "darkGreen": "#3D6C88",
+        "lightBackground": "rgba(126, 148, 165, 0.49)",
       }
     },
     lineHeight: {
       'extra-loose': '2.5',
-      '12': '3rem',
+      '12': '3em',
     },
   },
   plugins: [],

@@ -8,7 +8,7 @@ const BarChart_totalDemand = ({ totalDemandData, showTotalBar }) => {
   const labels = totalDemandData.map((td_item) => {
     return new Date(td_item.date).toLocaleString();
   });
-
+ 
   // separating two days 
   const dateStringOne = totalDemandData.map((item) => item.date);
   const momentObjOne = moment(dateStringOne, "YYYY/M/D, h:mm:ss A");

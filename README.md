@@ -1,70 +1,76 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hydro-Québec Data Visualization
 
-## Available Scripts
+This web application allows you to visualize public data from Hydro-Québec, specifically the total demand and production information. 
+It provides both a grid view and charts for an intuitive representation of the data.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Fetches data from the public Hydro-Québec REST API to visualize total demand and production.
+- Displays data in a grid view, providing a comprehensive overview of the information.
+- Generates a bar chart to visualize the total demand data divided into three shifts: night, morning, and evening.
+- Utilizes the Chart.js library to create interactive and visually appealing charts.
+- Implements moment.js for convenient date and time manipulation.
+- Incorporates Tailwind CSS and Material UI for responsive and modern user interface design.
+- Hosted on Vercel for easy accessibility and deployment.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The data structure fetching from the API has been modified to enhance the chart representation. Specifically, the total demand data has been divided into three shifts: night, morning, and evening, resulting in a more meaningful and intuitive visualization.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Screenshots
+![Screenshot 2023-05-16 at 10 17 16 AM](https://github.com/Ali-VB/hydro-quebecAPI_project/assets/62252507/ccf24a11-9c72-4a90-b046-2d7c161be58a)
+![Screenshot 2023-05-16 at 10 17 45 AM](https://github.com/Ali-VB/hydro-quebecAPI_project/assets/62252507/39c3601a-0939-4dde-b21e-1e7ad1b99875)
+![Screenshot 2023-05-16 at 10 17 52 AM](https://github.com/Ali-VB/hydro-quebecAPI_project/assets/62252507/48ef25c8-de80-4e15-960c-18d493b61488)
+![Screenshot 2023-05-16 at 10 18 05 AM](https://github.com/Ali-VB/hydro-quebecAPI_project/assets/62252507/0e3f15b3-fa2f-4625-99b2-8332ddc0be2c)
+![Screenshot 2023-05-16 at 10 18 10 AM](https://github.com/Ali-VB/hydro-quebecAPI_project/assets/62252507/74419851-73b3-4c3c-af81-4fc00ab565a5)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the application locally, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```shell
+   git clone https://github.com/your-username/hydro-quebecAPI_project.git
+   ```
 
-### `npm run eject`
+2. Navigate to the project directory:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```shell
+   cd hydro-quebecAPI_project
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Install the dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```shell
+   npm install
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Start the development server:
 
-## Learn More
+   ```shell
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. Open your browser and visit `http://localhost:3000` to view the application.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Deployment
 
-### Code Splitting
+This project is deployed using Vercel. You can access the live version of the application at (https://hydro-quebec-api-project.vercel.app/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Mockup Design
 
-### Analyzing the Bundle Size
+For a detailed visual representation of the application's design, please refer to the [Figma mockup](https://www.figma.com/file/Xzlfu2Q0sJBSqn1JGDiREq/Hydro-Qubec_demand-production?type=design&node-id=0%3A1&t=73TwicLKEXEzXgZA-1) prepared for this project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contribution
 
-### Making a Progressive Web App
+Contributions to this project are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
+## License
 
-### Advanced Configuration
+The project is licensed under the [MIT License](LICENSE), and the author of the project is Ali Vakili.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+For any inquiries or questions regarding the project, please feel free to contact Ali Vakili at alivakili.tech@gmail.com.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

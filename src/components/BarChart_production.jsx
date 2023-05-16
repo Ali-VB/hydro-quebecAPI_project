@@ -2,52 +2,84 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { AiOutlineStock } from "react-icons/ai";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 const BarChart_production = ({ productionData, showProductionBar }) => {
   const labels = productionData.map((pd_item) => {
     return new Date(pd_item.date).toLocaleString();
   });
+  console.log(productionData);
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "My First Dataset",
+        label: "total",
         data: productionData.map((pd_item) => {
-          return {
-            total: pd_item.valeurs.total,
-            demand: pd_item.valeurs.total,
-            hydraulique: pd_item.valeurs.hydraulique,
-            eolien: pd_item.valeurs.eolien,
-            autres: pd_item.valeurs.autres,
-            solaire: pd_item.valeurs.solaire,
-            thermique: pd_item.valeurs.thermique,
-          };
+          return [pd_item.valeurs.total];
         }),
-
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-          "rgba(255, 205, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(201, 203, 207, 0.2)",
-        ],
-        // borderColor: [
-        //   "rgb(255, 99, 132)",
-        //   "rgb(255, 159, 64)",
-        //   "rgb(255, 205, 86)",
-        //   "rgb(75, 192, 192)",
-        //   "rgb(54, 162, 235)",
-        //   "rgb(153, 102, 255)",
-        //   "rgb(201, 203, 207)",
-        // ],
-        borderWidth: 1,
+        backgroundColor: "rgb(75, 192, 192)",
+      },
+      {
+        label: "hydraulique",
+        data: productionData.map((pd_item) => {
+          return [pd_item.valeurs.hydraulique];
+        }),
+        backgroundColor: "rgb(255, 205, 86)",
+      },
+      {
+        label: "eolien",
+        data: productionData.map((pd_item) => {
+          return [pd_item.valeurs.eolien];
+        }),
+        backgroundColor: ["rgb(54, 162, 235)"],
+      },
+      {
+        label: "autres",
+        data: productionData.map((pd_item) => {
+          return [pd_item.valeurs.autres];
+        }),
+        backgroundColor: "rgb(153, 102, 255)",
+      },
+      {
+        label: "solaire",
+        data: productionData.map((pd_item) => {
+              return [pd_item.valeurs.solaire];
+        }),
+        backgroundColor: "rgb(095, 113, 111)",
+      },
+      {
+        label: "thermique",
+        data: productionData.map((pd_item) => {
+           return [pd_item.valeurs.thermique];
+        }),
+        backgroundColor: "rgb(010, 010, 132)",
       },
     ],
+  };
+  const options = {
+    maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+    },
   };
   return (
     <div className={showProductionBar ? "block" : "hidden"}>
@@ -55,7 +87,7 @@ const BarChart_production = ({ productionData, showProductionBar }) => {
         <AiOutlineStock size={30} />
         <h2 className="ml-2 pt-1">BAR CHART FOR PRODUCTION</h2>
       </div>
-      <Bar data={data} />
+      <Bar data={data} options={options} />
     </div>
   );
 };

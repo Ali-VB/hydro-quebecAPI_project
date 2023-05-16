@@ -3,7 +3,7 @@ import React from "react";
 const IntroPage = ({ showIntroPage }) => {
   return (
     <div className={showIntroPage ? "block" : "hidden"}>
-      <p className=" overflow-y-auto md:text-justify text-darkBlue md:p-16 font-normal text-xl md:text-3xl leading-10">
+      <p className=" overflow-y-auto md:text-justify text-darkBlue md:p-16 font-normal text-xl md:text-3xl leading-12">
         {" "}
         <h2 className="md:font-bold md:pb-4 text-amber-500">Welcome!</h2>
         This web application was designed to visualize data sourced from a REST

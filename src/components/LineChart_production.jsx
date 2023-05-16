@@ -17,6 +17,7 @@ const LineChart_production = ({ productionData, showProductionLine }) => {
         }),
         fill: false,
         borderColor: "#003f5c",
+        backgroundColor: "#003f5c",
         tension: 0.1,
       },
       {
@@ -26,6 +27,7 @@ const LineChart_production = ({ productionData, showProductionLine }) => {
         }),
         fill: false,
         borderColor: "#f4b677",
+        backgroundColor: "#f4b677",
         tension: 0.1,
       },
       {
@@ -35,6 +37,7 @@ const LineChart_production = ({ productionData, showProductionLine }) => {
         }),
         fill: false,
         borderColor: "#bc5090",
+        backgroundColor: "#bc5090",
         tension: 0.1,
       },
       {
@@ -44,6 +47,7 @@ const LineChart_production = ({ productionData, showProductionLine }) => {
         }),
         fill: false,
         borderColor: "#ff6361",
+        backgroundColor: "#ff6361",
         tension: 0.1,
       },
       {
@@ -53,6 +57,8 @@ const LineChart_production = ({ productionData, showProductionLine }) => {
         }),
         fill: false,
         borderColor: "#488f31",
+        backgroundColor: "#488f31",
+
         tension: 0.1,
       },
       {
@@ -62,18 +68,27 @@ const LineChart_production = ({ productionData, showProductionLine }) => {
         }),
         fill: false,
         borderColor: "#6996b3",
+        backgroundColor: "#6996b3",
         tension: 0.1,
       },
     ],
   };
+const options = {
+  maintainAspectRatio: true,
 
+  plugins: {
+    legend: {
+      position: "top",
+    },
+  },
+};
   return (
     <div className={showProductionLine ? "block" : "hidden"}>
       <div className=" flex justify-center align-middle py-8 font-medium text-amber-500">
         <AiOutlineStock size={30} />
         <h2 className="ml-2 pt-1">LINE CHART FOR TOTAL DEMAND</h2>
       </div>
-      <Line data={data} />
+      <Line data={data} options ={options}/>
     </div>
   );
 };

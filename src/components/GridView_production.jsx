@@ -1,23 +1,32 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { AiOutlineStock } from "react-icons/ai";
+import moment from "moment";
 
 const GridView_production = ({ productionData, showProductionGrid }) => {
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    { field: "date", headerName: "Date", width: 220 },
-    { field: "total", headerName: "Total", width: 130 },
-    { field: "hydraulique", headerName: "Hydraulique", width: 130 },
-    { field: "eolien", headerName: "Eolien", width: 130 },
-    { field: "autres", headerName: "Autres", width: 130 },
-    { field: "solaire", headerName: "Solaire", width: 130 },
-    { field: "thermique", headerName: "Thermique", width: 130 },
+    { field: "id", headerName: "ID", width: 60 },
+    { field: "day", headerName: "Day", width: 130 },
+    { field: "time", headerName: "Time", width: 130 },
+    { field: "total", headerName: "Total", width: 110 },
+    { field: "hydraulique", headerName: "Hydraulique", width: 110 },
+    { field: "eolien", headerName: "Eolien", width: 100 },
+    { field: "autres", headerName: "Autres", width: 100 },
+    { field: "solaire", headerName: "Solaire", width: 100 },
+    { field: "thermique", headerName: "Thermique", width: 100 },
   ];
 
   const rows = productionData.map((pd_item, index) => {
+    // separating day and time using moment.js library
+    const dateString = pd_item.date;
+    const momentObj = moment(dateString, "YYYY/M/D, h:mm:ss A");
+    const dayString = momentObj.format("YYYY/M/D");
+    const timeString = momentObj.format("h:mm:ss A");
+
     return {
       id: index + 1,
-      date: new Date(pd_item.date).toLocaleString(),
+      day: dayString,
+      time: timeString,
       total: pd_item.valeurs.total,
       hydraulique: pd_item.valeurs.hydraulique,
       eolien: pd_item.valeurs.eolien,

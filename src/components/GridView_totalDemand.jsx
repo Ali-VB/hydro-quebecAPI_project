@@ -1,18 +1,27 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { AiOutlineStock } from "react-icons/ai";
+import moment from "moment";
 
 const GridView_totalDemand = ({ totalDemandData, showTotalGrid }) => {
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
-    { field: "date", headerName: "Date", width: 220 },
+    { field: "day", headerName: "Day", width: 220 },
+    { field: "time", headerName: "Time", width: 220 },
     { field: "demand", headerName: "Total Demand", width: 130 },
   ];
 
   const rows = totalDemandData.map((td_item, index) => {
+    // separating day and time using moment.js library
+    const dateString = td_item.date;
+    const momentObj = moment(dateString, "YYYY/M/D, h:mm:ss A"); 
+    const dayString = momentObj.format("YYYY/M/D");
+    const timeString = momentObj.format("h:mm:ss A"); 
+
     return {
       id: index + 1,
-      date: new Date(td_item.date).toLocaleString(),
+      day: dayString,
+      time: timeString,
       demand: td_item.valeurs.demandeTotal,
     };
   });

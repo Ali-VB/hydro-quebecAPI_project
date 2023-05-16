@@ -11,6 +11,10 @@ module.exports = {
         "lightBackground":"rgba(126, 148, 165, 0.49)",
       }
     },
+    lineHeight: {
+      'extra-loose': '2.5',
+      '12': '3rem',
+    },
   },
   plugins: [],
 }

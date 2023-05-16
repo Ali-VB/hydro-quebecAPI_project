@@ -6,10 +6,12 @@ import BarChart_totalDemand from "./components/BarChart_totalDemand";
 import GridView_production from "./components/GridView_production";
 import BarChart_production from "./components/BarChart_production";
 import LineChart_production from "./components/LineChart_production";
+import ThreeShiftBarChart_totalDemand from "./components/ThreeShiftBarChart_totalDemand";
 import StackBarChart_production from "./components/StackBarChart_production";
 import IntroPage from "./components/IntroPage";
 import Logo from "./assets/TEC-logo.jpeg";
 import { SlEnergy } from "react-icons/sl";
+
 
 function App() {
 
@@ -51,6 +53,7 @@ function App() {
   const [showTotalGrid, setShowTotalGrid] = useState(false)
   const [showProductionGrid, setShowProductionGrid] = useState(false)
   const [showProductionStack, setShowProductionStack] = useState(false)
+  const [showThreeShiftTotalBarChart, setShowThreeShiftTotalBarChart] = useState(false)
   const [showIntroPage, setShowIntroPage] = useState(true)
 
   const handleSideBarAction = (setChart) => {
@@ -61,6 +64,7 @@ function App() {
     setShowTotalGrid(false)
     setShowProductionGrid(false)
     setShowProductionStack(false)
+    setShowThreeShiftTotalBarChart(false)
     setShowIntroPage(false)
     setChart(true)
     // console.log("YES")
@@ -98,6 +102,9 @@ function App() {
               <li className={`border-l-2 border-lightBackground hover:border-white
                  hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
                   ease-in-out duration-300 [&.active]:text-amber-500 ${showTotalLine ? "active" : ""}`} onClick={() => handleSideBarAction(setShowTotalLine)}>Line Chart</li>
+              <li className={`border-l-2 border-lightBackground hover:border-white
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
+                  ease-in-out duration-300 [&.active]:text-amber-500 ${showTotalLine ? "active" : ""}`} onClick={() => handleSideBarAction(setShowThreeShiftTotalBarChart)}>Three Shifts</li>
 
             </ul>
             <div className="mt-8  font-semibold">
@@ -120,7 +127,7 @@ function App() {
             </ul>
           </div>
         </div>
-        <div className="absolute bottom-7 left-12 ">Ali Vakili &copy;2023</div>
+        <div className=" hidden md:block md:absolute md:bottom-7 md:left-12 ">Ali Vakili &copy;2023</div>
       </div>
 
       {/* Chart section */}
@@ -162,6 +169,7 @@ function App() {
         {/* Chart container */}
         <div className="flex flex-col  align-middle py-4 bg-sky-50 px-8 md:h-5/6 overflow-y-auto rounded-lg">
           <IntroPage showIntroPage={showIntroPage} />
+          <ThreeShiftBarChart_totalDemand totalDemandData={totalDemandData} showThreeShiftTotalBarChart={showThreeShiftTotalBarChart }/>
           <GridView_totalDemand totalDemandData={totalDemandData} showTotalGrid={showTotalGrid} />
           <GridView_production productionData={productionData} showProductionGrid={showProductionGrid} />
           <LineChart_totalDemand totalDemandData={totalDemandData} showTotalLine={showTotalLine} />

@@ -11,6 +11,7 @@ import StackBarChart_production from "./components/StackBarChart_production";
 import IntroPage from "./components/IntroPage";
 import Logo from "./assets/TEC-logo.jpeg";
 import { SlEnergy } from "react-icons/sl";
+import { FaGithub } from "react-icons/fa";
 
 function App() {
   // Data for Total Demand
@@ -156,7 +157,9 @@ function App() {
             </ul>
           </div>
         </div>
-        <div className=" hidden md:block md:absolute md:bottom-7 md:left-12 ">Ali Vakili &copy;2023</div>
+        <div className=" hidden md:block md:absolute md:bottom-7 md:left-16 ">
+          <a href="https://github.com/Ali-VB/hydro-quebecAPI_project" target="_blank">
+            <FaGithub  size ="20"className="inline-block "/><span className="pl-2">Ali Vakili &copy;2023</span> </a></div>
       </div>
 
       {/* Chart section */}

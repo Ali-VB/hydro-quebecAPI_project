@@ -19,10 +19,8 @@ const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBa
     date: td_item.date,
     demand: td_item.valeurs.demandeTotal,
   }));
-    
-console.log("totalDemandData", totalDemandData);
-console.log("shiftsDataDayOne", shiftsDataDayOne);
-console.log("shiftsDataDayTwo", shiftsDataDayTwo);
+
+  // console.log("shiftsDataDayTwo", shiftsDataDayTwo);
   // separate two days
   const dateStringOne = totalDemandData.map((item) => item.date);
   const momentObjOne = moment(dateStringOne, "YYYY/M/D, h:mm:ss A");
@@ -82,15 +80,38 @@ console.log("shiftsDataDayTwo", shiftsDataDayTwo);
   const shiftMorningTotalDayOne = shiftMorningDataDayOne.reduce((acc, item) => acc + item.demand, 0);
   const shiftEveningTotalDayOne = shiftEveningDataDayOne.reduce((acc, item) => acc + item.demand, 0);
   const shiftNighTotalDayOne = shiftNightDataDayOne.reduce((acc, item) => acc + item.demand, 0);
-  const shiftMorningTotalDayTwo = shiftMorningDataDayTwo.reduce((acc, item) => acc + item.demand, 0);
-  const shiftEveningTotalDayTwo = shiftEveningDataDayTwo.reduce((acc, item) => acc + item.demand, 0);
-  const shiftNighTotalDayTwo = shiftNightDataDayTwo.reduce((acc, item) => acc + item.demand, 0);
+  const shiftMorningTotalDayTwo = shiftMorningDataDayTwo.reduce((acc, item) => {
+    if (item && typeof item.demand === "number") {
+      return acc + item.demand;
+    }
+    return acc;
+  }, 0);
+  const shiftEveningTotalDayTwo = shiftEveningDataDayTwo.reduce((acc, item) => {
+    if (item && typeof item.demand === "number") {
+      return acc + item.demand;
+    }
+    return acc;
+  }, 0);
+  const shiftNighTotalDayTwo = shiftNightDataDayTwo.reduce((acc, item) => {
+    if (item && typeof item.demand === "number") {
+      return acc + item.demand;
+    }
+    return acc;
+  }, 0);
 
-
+  console.log("shiftMorningTotalDayTwo##", shiftMorningTotalDayTwo);
+  //  console.log("shiftEveningTotalDayTwo", shiftEveningTotalDayTwo);
+  console.log("shiftMorningDataDayTwo", shiftMorningDataDayTwo);
   const labels = [
-    ` Night Shift From ${moment(shiftNightStartDayOne).format(" h:mm:ss a")}  ${moment(shiftNightEndDayOne).format(" h:mm:ss a")} `,
-    ` Morning Shift From ${moment(shiftMorningStartDayOne).format(" h:mm:ss a")}  ${moment(shiftMorningEndDayOne).format(" h:mm:ss a")} `,
-    ` Evening Shift From ${moment(shiftEveningStartDayOne).format(" h:mm:ss a")}  ${moment(shiftEveningEndDayOne).format(" h:mm:ss a")} `,
+    ` Night Shift ${moment(shiftNightStartDayOne).format(" h:mm:ss A")} -${moment(shiftNightEndDayOne).format(
+      " h:mm:ss A"
+    )} `,
+    ` Morning Shift ${moment(shiftMorningStartDayOne).format(" h:mm:ss A")} -${moment(shiftMorningEndDayOne).format(
+      " h:mm:ss A"
+    )} `,
+    ` Evening Shift ${moment(shiftEveningStartDayOne).format(" h:mm:ss A")} -${moment(shiftEveningEndDayOne).format(
+      " h:mm:ss A"
+    )} `,
   ];
   const data = {
     labels: labels,
@@ -98,7 +119,6 @@ console.log("shiftsDataDayTwo", shiftsDataDayTwo);
       {
         label: `Day One ${dayStringOne}`,
         data: [shiftMorningTotalDayOne, shiftEveningTotalDayOne, shiftNighTotalDayOne],
-
         fill: false,
         borderColor: "#003f5c",
         tension: 0.1,
@@ -107,8 +127,7 @@ console.log("shiftsDataDayTwo", shiftsDataDayTwo);
       },
       {
         label: `Day Two ${dayStringTwo}`,
-        data:  [shiftMorningTotalDayTwo, shiftEveningTotalDayTwo, shiftNighTotalDayTwo],
-
+        data: [shiftNighTotalDayTwo, shiftMorningTotalDayTwo, shiftEveningTotalDayTwo],
         fill: false,
         borderColor: "orange",
         tension: 0.1,

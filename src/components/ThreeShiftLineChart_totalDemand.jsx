@@ -1,7 +1,6 @@
 import React from "react";
 import moment from "moment";
 import "moment-range";
-import { Bar } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { AiOutlineStock } from "react-icons/ai";
@@ -9,7 +8,7 @@ import { extendMoment } from "moment-range";
 
 const momentWithRange = extendMoment(moment);
 
-const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBarChart }) => {
+const ThreeShiftLineChart_totalDemand = ({ totalDemandData, showThreeShiftTotalLineChart }) => {
   //create object of data for each shifts
 
   const shiftsDataDayOne = totalDemandData.slice(0, 99).map((td_item) => ({
@@ -139,14 +138,14 @@ const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBa
     ],
   };
   return (
-    <div className={showThreeShiftTotalBarChart ? "block" : "hidden"}>
+    <div className={showThreeShiftTotalLineChart ? "block" : "hidden"}>
       <div className=" flex justify-center align-middle py-8 font-medium text-amber-500">
         <AiOutlineStock size={30} />
-        <h2 className="ml-2 pt-1">BAR CHART FOR TOTAL DEMAND THREE SHIFTS</h2>
+        <h2 className="ml-2 pt-1">LINE CHART FOR TOTAL DEMAND THREE SHIFTS</h2>
       </div>
-      <Bar data={data} />
+      <Line data={data} />
     </div>
   );
 };
 
-export default ThreeShiftBarChart_totalDemand;
+export default ThreeShiftLineChart_totalDemand;

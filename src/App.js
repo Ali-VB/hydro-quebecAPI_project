@@ -7,6 +7,7 @@ import GridView_production from "./components/GridView_production";
 import BarChart_production from "./components/BarChart_production";
 import LineChart_production from "./components/LineChart_production";
 import ThreeShiftBarChart_totalDemand from "./components/ThreeShiftBarChart_totalDemand";
+import ThreeShiftLineChart_totalDemand from "./components/ThreeShiftLineChart_totalDemand";
 import StackBarChart_production from "./components/StackBarChart_production";
 import IntroPage from "./components/IntroPage";
 import Logo from "./assets/TEC-logo.jpeg";
@@ -49,6 +50,7 @@ function App() {
   const [showProductionGrid, setShowProductionGrid] = useState(false);
   const [showProductionStack, setShowProductionStack] = useState(false);
   const [showThreeShiftTotalBarChart, setShowThreeShiftTotalBarChart] = useState(false);
+  const [showThreeShiftTotalLineChart, setShowThreeShiftTotalLineChart] = useState(false);
   const [showIntroPage, setShowIntroPage] = useState(true);
 
   const handleSideBarAction = (setChart) => {
@@ -60,6 +62,7 @@ function App() {
     setShowProductionGrid(false);
     setShowProductionStack(false);
     setShowThreeShiftTotalBarChart(false);
+    setShowThreeShiftTotalLineChart(false);
     setShowIntroPage(false);
     setChart(true);
     // console.log("YES")
@@ -86,7 +89,7 @@ function App() {
             <ul>
               <li
                 className={`border-l-2 border-lightBackground hover:border-white
-                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
                   ease-in-out duration-300 [&.active]:text-amber-500 ${showTotalGrid ? "active" : ""}`}
                 onClick={() => handleSideBarAction(setShowTotalGrid)}
               >
@@ -94,7 +97,7 @@ function App() {
               </li>
               <li
                 className={`border-l-2 border-lightBackground hover:border-white
-                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
                   ease-in-out duration-300 [&.active]:text-amber-500 ${showTotalBar ? "active" : ""}`}
                 onClick={() => handleSideBarAction(setShowTotalBar)}
               >
@@ -102,7 +105,15 @@ function App() {
               </li>
               <li
                 className={`border-l-2 border-lightBackground hover:border-white
-                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
+                  ease-in-out duration-300 [&.active]:text-amber-500 ${showThreeShiftTotalBarChart ? "active" : ""}`}
+                onClick={() => handleSideBarAction(setShowThreeShiftTotalBarChart)}
+              >
+                Bar Chart &clubs; <br></br>Three Shifts
+              </li>
+              <li
+                className={`border-l-2 border-lightBackground hover:border-white
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
                   ease-in-out duration-300 [&.active]:text-amber-500 ${showTotalLine ? "active" : ""}`}
                 onClick={() => handleSideBarAction(setShowTotalLine)}
               >
@@ -110,11 +121,11 @@ function App() {
               </li>
               <li
                 className={`border-l-2 border-lightBackground hover:border-white
-                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
-                  ease-in-out duration-300 [&.active]:text-amber-500 ${showThreeShiftTotalBarChart ? "active" : ""}`}
-                onClick={() => handleSideBarAction(setShowThreeShiftTotalBarChart)}
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
+                  ease-in-out duration-300 [&.active]:text-amber-500 ${showThreeShiftTotalLineChart ? "active" : ""}`}
+                onClick={() => handleSideBarAction(setShowThreeShiftTotalLineChart)}
               >
-                Bar Chart &clubs; <br></br><p className="font-light">Three Shifts</p>
+                Line Chart &clubs; <br></br> Three Shifts
               </li>
             </ul>
             <div className="mt-8  font-semibold">
@@ -124,7 +135,7 @@ function App() {
             <ul>
               <li
                 className={`border-l-2 border-lightBackground hover:border-white
-                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
                   ease-in-out duration-300 [&.active]:text-amber-500 ${showProductionGrid ? "active" : ""}`}
                 onClick={() => handleSideBarAction(setShowProductionGrid)}
               >
@@ -132,7 +143,7 @@ function App() {
               </li>
               <li
                 className={`border-l-2 border-lightBackground hover:border-white
-                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
                   ease-in-out duration-300 [&.active]:text-amber-500 ${showProductionBar ? "active" : ""}`}
                 onClick={() => handleSideBarAction(setShowProductionBar)}
               >
@@ -140,7 +151,7 @@ function App() {
               </li>
               <li
                 className={`border-l-2 border-lightBackground hover:border-white
-                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
                   ease-in-out duration-300 [&.active]:text-amber-500 ${showProductionLine ? "active" : ""}`}
                 onClick={() => handleSideBarAction(setShowProductionLine)}
               >
@@ -148,7 +159,7 @@ function App() {
               </li>
               <li
                 className={`border-l-2 border-lightBackground hover:border-white
-                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-semibold [&.active]:font-semibold
+                 hover:border-l-2 pl-4  mb-2 ml-8 hover:cursor-pointer hover:font-bold [&.active]:font-semibold
                   ease-in-out duration-300 [&.active]:text-amber-500 ${showProductionStack ? "active" : ""}`}
                 onClick={() => handleSideBarAction(setShowProductionStack)}
               >
@@ -159,7 +170,10 @@ function App() {
         </div>
         <div className=" hidden md:block md:absolute md:bottom-7 md:left-16 ">
           <a href="https://github.com/Ali-VB/hydro-quebecAPI_project" target="_blank">
-            <FaGithub  size ="20"className="inline-block "/><span className="pl-2">Ali Vakili &copy;2023</span> </a></div>
+            <FaGithub size="25" className="inline-block " />
+            <span className="pl-2">Ali Vakili &copy;2023</span>{" "}
+          </a>
+        </div>
       </div>
 
       {/* Chart section */}
@@ -200,7 +214,14 @@ function App() {
         {/* Chart container */}
         <div className="flex flex-col  align-middle py-4 bg-sky-50 px-8 md:h-5/6 overflow-y-auto rounded-lg">
           <IntroPage showIntroPage={showIntroPage} />
-          <ThreeShiftBarChart_totalDemand totalDemandData={totalDemandData} showThreeShiftTotalBarChart={showThreeShiftTotalBarChart} />
+          <ThreeShiftBarChart_totalDemand
+            totalDemandData={totalDemandData}
+            showThreeShiftTotalBarChart={showThreeShiftTotalBarChart}
+          />
+          <ThreeShiftLineChart_totalDemand
+            totalDemandData={totalDemandData}
+            showThreeShiftTotalLineChart={showThreeShiftTotalLineChart}
+          />
           <GridView_totalDemand totalDemandData={totalDemandData} showTotalGrid={showTotalGrid} />
           <GridView_production productionData={productionData} showProductionGrid={showProductionGrid} />
           <LineChart_totalDemand totalDemandData={totalDemandData} showTotalLine={showTotalLine} />

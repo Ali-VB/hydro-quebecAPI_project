@@ -5,8 +5,24 @@ import { AiOutlineStock } from "react-icons/ai";
 import moment from "moment";
 
 const LineChart_totalDemand = ({ totalDemandData, showTotalLine }) => {
-  const labels = totalDemandData.map((td_item) => {
-    return new Date(td_item.date).toLocaleString();
+  const totalDemandDataFormated = totalDemandData.map((td_item) => {
+    return {
+      time: moment(td_item.date).format("hh:mm:ss"),
+      value: td_item.valeurs.demandeTotal == undefined ? 0 : td_item.valeurs.demandeTotal,
+    };
+  });
+  // console.log("totalDemandDataFormated", totalDemandDataFormated);
+
+  const roundedTimesArray = totalDemandDataFormated.filter((item) => {
+    const [hour, minute, second] = item.time === undefined ? "00:00:00" : item.time.split(":");
+    return parseInt(minute) === 0 && parseInt(second) === 0;
+  });
+  // console.log("ROUNDEDTIMESARRAY", roundedTimesArray);
+
+ 
+
+  const labels = roundedTimesArray.map((td_item) => {
+    return td_item.time;
   });
 
   // separating two days
@@ -14,9 +30,7 @@ const LineChart_totalDemand = ({ totalDemandData, showTotalLine }) => {
   const momentObjOne = moment(dateStringOne, "YYYY/M/D, h:mm:ss A");
   const dayStringOne = momentObjOne.format("YYYY/M/D");
 
-  const dateStringTwo = totalDemandData.map(
-    (item, index) => index == 100 && item.date
-  );
+  const dateStringTwo = totalDemandData.map((item, index) => index == 100 && item.date);
   const momentObjTwo = moment(dateStringTwo, "YYYY/M/D, h:mm:ss A");
   const dayStringTwo = momentObjTwo.format("YYYY/M/D");
 
@@ -25,9 +39,9 @@ const LineChart_totalDemand = ({ totalDemandData, showTotalLine }) => {
     datasets: [
       {
         label: `Day One ${dayStringOne}`,
-        data: totalDemandData.map((td_item, index) => {
-          if (index <= 99) {
-            return td_item.valeurs.demandeTotal;
+        data: roundedTimesArray.map((td_item, index) => {
+          if (index <= 12) {
+            return td_item.value;
           }
         }),
 
@@ -39,9 +53,9 @@ const LineChart_totalDemand = ({ totalDemandData, showTotalLine }) => {
       },
       {
         label: `Day Two ${dayStringTwo}`,
-        data: totalDemandData.map((td_item, index) => {
-          if (index >= 99) {
-            return td_item.valeurs.demandeTotal;
+        data: roundedTimesArray.map((td_item, index) => {
+          if (index >= 12) {
+            return td_item.value;
           }
         }),
 
@@ -60,6 +74,7 @@ const LineChart_totalDemand = ({ totalDemandData, showTotalLine }) => {
       <div className=" flex justify-center align-middle py-8 font-medium text-amber-500">
         <AiOutlineStock size={30} />
         <h2 className="ml-2 pt-1">LINE CHART FOR TOTAL DEMAND</h2>
+        <h2 className="text-darkBlue  font-semibold pt-1 pl-2">&#91;Rounded Time&#93;</h2>
       </div>
       <Line data={data} />
     </div>

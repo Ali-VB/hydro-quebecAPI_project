@@ -5,18 +5,38 @@ import moment from "moment";
 
 const GridView_totalDemand = ({ totalDemandData, showTotalGrid }) => {
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    { field: "day", headerName: "Day", width: 220 },
-    { field: "time", headerName: "Time", width: 220 },
-    { field: "demand", headerName: "Total Demand", width: 130 },
+    {
+      field: "id",
+      headerName: "ID",
+      flex: 1,
+      headerClassName: "bg-darkBlue hover:text-white text-white  text-lg font-bold",
+    },
+    {
+      field: "day",
+      headerName: "Day",
+      flex: 2,
+      headerClassName: "bg-darkBlue hover:text-white text-white  text-lg font-bold",
+    },
+    {
+      field: "time",
+      headerName: "Time",
+      flex: 2,
+      headerClassName: "bg-darkBlue hover:text-white text-white  text-lg font-bold",
+    },
+    {
+      field: "demand",
+      headerName: "Total Demand",
+      flex: 2,
+      headerClassName: "bg-darkBlue hover:text-white text-white  text-lg font-bold",
+    },
   ];
 
   const rows = totalDemandData.map((td_item, index) => {
     // separating day and time using moment.js library
     const dateString = td_item.date;
-    const momentObj = moment(dateString, "YYYY/M/D, h:mm:ss A"); 
+    const momentObj = moment(dateString, "YYYY/M/D, h:mm:ss A");
     const dayString = momentObj.format("YYYY/M/D");
-    const timeString = momentObj.format("h:mm:ss A"); 
+    const timeString = momentObj.format("h:mm:ss A");
 
     return {
       id: index + 1,
@@ -38,11 +58,11 @@ const GridView_totalDemand = ({ totalDemandData, showTotalGrid }) => {
           columns={columns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 10 },
             },
             hideFooterSelectedRowCount: false,
           }}
-          pageSizeOptions={[5, 10, 20, 50, 100]}
+          pageSizeOptions={[10, 20, 50, 100]}
         />
       </div>
     </div>

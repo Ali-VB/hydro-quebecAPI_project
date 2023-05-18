@@ -212,7 +212,7 @@ function App() {
         </div> */}
         <div className=" flex justify-center py-8"></div>
         {/* Chart container */}
-        <div className="flex flex-col  align-middle pb-8 bg-sky-50 px-8 md:h-6/6 overflow-y-auto rounded-lg">
+        <div className="flex flex-col  align-middle pb-8 bg-sky-50 px-8 md:h-5/6 overflow-auto rounded-lg">
           <IntroPage showIntroPage={showIntroPage} />
           <ThreeShiftBarChart_totalDemand
             totalDemandData={totalDemandData}

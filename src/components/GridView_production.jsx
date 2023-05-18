@@ -5,15 +5,60 @@ import moment from "moment";
 
 const GridView_production = ({ productionData, showProductionGrid }) => {
   const columns = [
-    { field: "id", headerName: "ID", width: 60 },
-    { field: "day", headerName: "Day", width: 130 },
-    { field: "time", headerName: "Time", width: 130 },
-    { field: "total", headerName: "Total", width: 110 },
-    { field: "hydraulique", headerName: "Hydraulique", width: 110 },
-    { field: "eolien", headerName: "Eolien", width: 100 },
-    { field: "autres", headerName: "Autres", width: 100 },
-    { field: "solaire", headerName: "Solaire", width: 100 },
-    { field: "thermique", headerName: "Thermique", width: 100 },
+    {
+      field: "id",
+      headerName: "ID",
+      flex: 1,
+      headerClassName: "bg-darkBlue hover:text-white text-white  text-lg font-bold",
+    },
+    {
+      field: "day",
+      headerName: "Day",
+      flex: 2,
+      headerClassName: "bg-darkBlue text-white focus:text-orang-500 text-lg font-bold",
+    },
+    {
+      field: "time",
+      headerName: "Time",
+      flex: 2,
+      headerClassName: "bg-darkBlue text-white focus:text-orang-500 text-lg font-bold",
+    },
+    {
+      field: "total",
+      headerName: "Total",
+      flex: 2,
+      headerClassName: "bg-darkBlue text-white focus:text-orang-500 text-lg font-bold",
+    },
+    {
+      field: "hydraulique",
+      headerName: "Hydraulique",
+      flex: 2,
+      headerClassName: "bg-darkBlue text-white focus:text-orang-500 text-lg font-bold",
+    },
+    {
+      field: "eolien",
+      headerName: "Eolien",
+      flex: 2,
+      headerClassName: "bg-darkBlue text-white focus:text-orang-500 text-lg font-bold",
+    },
+    {
+      field: "autres",
+      headerName: "Autres",
+      flex: 2,
+      headerClassName: "bg-darkBlue text-white focus:text-orang-500 text-lg font-bold",
+    },
+    {
+      field: "solaire",
+      headerName: "Solaire",
+      flex: 2,
+      headerClassName: "bg-darkBlue text-white focus:text-orang-500 text-lg font-bold",
+    },
+    {
+      field: "thermique",
+      headerName: "Thermique",
+      flex: 2,
+      headerClassName: "bg-darkBlue text-white focus:text-orang-500 text-lg font-bold",
+    },
   ];
 
   const rows = productionData.map((pd_item, index) => {
@@ -49,11 +94,11 @@ const GridView_production = ({ productionData, showProductionGrid }) => {
           columns={columns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 10 },
             },
             hideFooterSelectedRowCount: false,
           }}
-          pageSizeOptions={[5, 10, 20, 50, 100]}
+          pageSizeOptions={[10, 20, 50, 100]}
         />
       </div>
     </div>

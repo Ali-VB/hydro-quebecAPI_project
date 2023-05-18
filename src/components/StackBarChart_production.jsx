@@ -3,9 +3,9 @@ import { Bar } from "react-chartjs-2";
 import { AiOutlineStock } from "react-icons/ai";
 
 function StackBarChart_production({ productionData, showProductionStack }) {
-   const labels = productionData.map((pd_item) => {
-     return new Date(pd_item.date).toLocaleString();
-   });
+  const labels = productionData.map((pd_item) => {
+    return new Date(pd_item.date).toLocaleString();
+  });
   const data = {
     labels: labels,
     datasets: [

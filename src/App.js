@@ -37,9 +37,8 @@ function App() {
     setChart(true);
   };
 
-  // Data for Total Demand
+  // State for holding data of Total Demand and Productions
   const [totalDemandData, setTotalDemandData] = useState([]);
-  // Data for Productions
   const [productionData, setProductionData] = useState([]);
 
   // Fetch Data from Two End Points
@@ -47,13 +46,25 @@ function App() {
   const productionAPI = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json";
 
   useEffect(() => {
-    Promise.all([fetch(totalDemandAPI), fetch(productionAPI)])
-      .then(([resTotalDemand, resProduction]) => Promise.all([resTotalDemand.json(), resProduction.json()]))
-      .then(([data_total, data_production]) => {
-        setTotalDemandData(data_total.details);
-        setProductionData(data_production.details);
-      });
+    const fetchData = async () => {
+      try {
+        const [resTotalDemand, resProduction] = await Promise.all([
+          fetch(totalDemandAPI),
+          fetch(productionAPI)
+        ]);
+        const dataTotalDemand = await resTotalDemand.json();
+        const dataProduction = await resProduction.json();
+
+        setTotalDemandData(dataTotalDemand.details);
+        setProductionData(dataProduction.details);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
+
  
   return (
     <div className="flex flex-col lg:flex-row h-screen">

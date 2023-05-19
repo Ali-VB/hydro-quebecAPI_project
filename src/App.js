@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import {
-  GridView_totalDemand, GridView_production, LineChart_totalDemand, 
+  GridView_totalDemand, GridView_production, LineChart_totalDemand,
   BarChart_totalDemand, BarChart_production, LineChart_production,
-  StackBarChart_production,ThreeShiftBarChart_totalDemand,
-  ThreeShiftLineChart_totalDemand, IntroPage } from './components'
+  StackBarChart_production, ThreeShiftBarChart_totalDemand,
+  ThreeShiftLineChart_totalDemand, IntroPage
+} from './components'
 import Logo from "./assets/TEC-logo.jpeg";
 import { SlEnergy } from "react-icons/sl";
 import { FaGithub } from "react-icons/fa";
 
 function App() {
-  
+
   // SideBar Actions Handling
   const [showTotalLine, setShowTotalLine] = useState(false);
   const [showProductionLine, setShowProductionLine] = useState(false);
@@ -65,7 +66,7 @@ function App() {
     fetchData();
   }, []);
 
- 
+
   return (
     <div className="flex flex-col lg:flex-row h-screen">
       {/* Sidebar */}
@@ -177,37 +178,6 @@ function App() {
       {/* Chart section */}
       <div className="lg:w-4/5 p-12 bg-darkGreen h-screen">
         {/* Tabs */}
-        {/* <div className=" flex justify-center pb-8">
-          <div className=" flex justify-around bg-lightBackground w-auto rounded-full py-2 px-4">
-            <button
-              class="rounded-full py-2 px-4 outline-0 
-             hover:bg-darkBlue active:bg-darkBlue text-white hover:font-semibold [&.active]:font-semibold 
-             ease-linear duration-100"
-            >
-              Grid View
-            </button>
-            <button
-              class="rounded-full  py-2 px-4 outline-0
-             hover:bg-darkBlue [&.active]:bg-darkBlue text-white hover:font-semibold [&.active]:font-semibold 
-             ease-linear duration-100"
-            >
-              Bar Chart
-            </button>
-            <button
-              class="rounded-full py-2 px-4 outline-0 hover:bg-darkBlue active:bg-darkBlue text-white
-            hover:font-semibold [&.active]:font-semibold ease-linear duration-100"
-            >
-              Line Chart
-            </button>
-            <button
-              class="rounded-full py-2 px-4 outline-0 hover:bg-darkBlue active:bg-darkBlue
-             text-white hover:font-semibold [&.active]:font-semibold 
-             ease-linear duration-100"
-            >
-              Stack Chart
-            </button>
-          </div>
-        </div> */}
         <div className=" flex justify-center py-8"></div>
         {/* Chart container */}
         <div className="flex flex-col  align-middle pb-8 bg-sky-50 px-8 md:h-5/6 overflow-auto rounded-lg">

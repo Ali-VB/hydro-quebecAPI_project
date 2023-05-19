@@ -1,9 +1,10 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { AiOutlineStock } from "react-icons/ai";
-import moment from "moment";
+import { separateDayAndTime } from "./helpers";
 
 const GridView_production = ({ productionData, showProductionGrid }) => {
+  //Columns of Data Grid
   const columns = [
     {
       field: "id",
@@ -61,12 +62,11 @@ const GridView_production = ({ productionData, showProductionGrid }) => {
     },
   ];
 
+  // Rows
   const rows = productionData.map((pd_item, index) => {
-    // separating day and time using moment.js library
-    const dateString = pd_item.date;
-    const momentObj = moment(dateString, "YYYY/M/D, h:mm:ss A");
-    const dayString = momentObj.format("YYYY/M/D");
-    const timeString = momentObj.format("h:mm:ss A");
+
+    // separate day and time using moment.js library
+    const { dayString, timeString } = separateDayAndTime(pd_item);
 
     return {
       id: index + 1,

@@ -15,8 +15,6 @@ const BarChart_totalDemand = ({ totalDemandData, showTotalBar }) => {
   // separate two days
   const dayStringOne = getDayString(totalDemandData, 0);
   const dayStringTwo = getDayString(totalDemandData, totalDemandData.length-1);
-  console.log("dayStringOne", dayStringOne);
-  console.log("dayStringTwo", dayStringTwo);
   // Bar Chart
   const labels = roundedTimesArray.map((td_item) => {
     return td_item.time;

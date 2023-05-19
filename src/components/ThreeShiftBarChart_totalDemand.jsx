@@ -1,37 +1,20 @@
 import React from "react";
 import moment from "moment";
-import "moment-range";
-import { Bar } from "react-chartjs-2";
-import { Line } from "react-chartjs-2";
-import Chart from "chart.js/auto";
-import { AiOutlineStock } from "react-icons/ai";
 import { extendMoment } from "moment-range";
+import { Bar } from "react-chartjs-2";
+import { AiOutlineStock } from "react-icons/ai";
+import { getDayString, createShiftData } from "./helpers";
 
 const momentWithRange = extendMoment(moment);
 
 const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBarChart }) => {
-  //create object of data for each shifts
-
-  const shiftsDataDayOne = totalDemandData.slice(0, 99).map((td_item) => ({
-    date: td_item.date,
-    demand: td_item.valeurs.demandeTotal,
-  }));
-  const shiftsDataDayTwo = totalDemandData.slice(99, 192).map((td_item) => ({
-    date: td_item.date,
-    demand: td_item.valeurs.demandeTotal,
-  }));
-
-  // console.log("shiftsDataDayTwo", shiftsDataDayTwo);
   // separate two days
-  const dateStringOne = totalDemandData.map((item) => item.date);
-  const momentObjOne = moment(dateStringOne, "YYYY/M/D, h:mm:ss A");
-  const dayStringOne = momentObjOne.format("YYYY/M/D");
+  const dayStringOne = getDayString(totalDemandData, 0);
+  const dayStringTwo = getDayString(totalDemandData, totalDemandData.length - 1);
 
-  const dateStringTwo = totalDemandData.map((item, index) => index == 100 && item.date);
-  const momentObjTwo = moment(dateStringTwo, "YYYY/M/D, h:mm:ss A");
-  const dayStringTwo = momentObjTwo.format("YYYY/M/D");
-
-  // console.log("dayStringTwo", dayStringTwo);
+  //create object of data for each shifts
+  const shiftsDataDayOne = createShiftData(totalDemandData.slice(0, 99));
+  const shiftsDataDayTwo = createShiftData(totalDemandData.slice(99, 192));
 
   // Define the shift ranges
   //day one
@@ -48,14 +31,11 @@ const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBa
   const shiftMorningEndDayTwo = moment(`${dayStringTwo} '4:00:00 PM'`, "YYYY/M/D h:mm:ss A");
   const shiftEveningStartDayTwo = moment(`${dayStringTwo} '4:00:00 PM'`, "YYYY/M/D h:mm:ss A");
   const shiftEveningEndDayTwo = moment(` ${dayStringTwo} '23:45:00 PM'`, "YYYY/M/D h:mm:ss A");
-  // Categorize the energy consumption data into shifts
+
+  // Categorize the energy consumption data into shifts fro day One
   const shiftMorningDataDayOne = [];
   const shiftEveningDataDayOne = [];
   const shiftNightDataDayOne = [];
-
-  const shiftMorningDataDayTwo = [];
-  const shiftEveningDataDayTwo = [];
-  const shiftNightDataDayTwo = [];
 
   shiftsDataDayOne.forEach((item) => {
     const date = moment(item.date, "YYYY/M/D h:mm:ss A");
@@ -67,6 +47,12 @@ const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBa
       shiftNightDataDayOne.push(item);
     }
   });
+
+  // Categorize the energy consumption data into shifts fro day Two
+  const shiftMorningDataDayTwo = [];
+  const shiftEveningDataDayTwo = [];
+  const shiftNightDataDayTwo = [];
+
   shiftsDataDayTwo.forEach((item) => {
     const date = moment(item.date, "YYYY/M/D h:mm:ss A");
     if (moment.range(shiftMorningStartDayTwo, shiftMorningEndDayTwo).contains(date)) {
@@ -78,6 +64,7 @@ const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBa
     }
   });
 
+  // Categorize the energy consumption data into shifts fro day Two
   const shiftMorningTotalDayOne = shiftMorningDataDayOne.reduce((acc, item) => acc + item.demand, 0);
   const shiftEveningTotalDayOne = shiftEveningDataDayOne.reduce((acc, item) => acc + item.demand, 0);
   const shiftNighTotalDayOne = shiftNightDataDayOne.reduce((acc, item) => acc + item.demand, 0);
@@ -100,9 +87,7 @@ const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBa
     return acc;
   }, 0);
 
-  console.log("shiftMorningTotalDayTwo##", shiftMorningTotalDayTwo);
-  //  console.log("shiftEveningTotalDayTwo", shiftEveningTotalDayTwo);
-  console.log("shiftMorningDataDayTwo", shiftMorningDataDayTwo);
+  // Chart
   const labels = [
     ` Night Shift ${moment(shiftNightStartDayOne).format(" h:mm:ss A")} -${moment(shiftNightEndDayOne).format(
       " h:mm:ss A"
@@ -114,6 +99,7 @@ const ThreeShiftBarChart_totalDemand = ({ totalDemandData, showThreeShiftTotalBa
       " h:mm:ss A"
     )} `,
   ];
+
   const data = {
     labels: labels,
     datasets: [

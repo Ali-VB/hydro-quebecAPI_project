@@ -11,15 +11,13 @@ const LineChart_totalDemand = ({ totalDemandData, showTotalLine }) => {
       value: td_item.valeurs.demandeTotal == undefined ? 0 : td_item.valeurs.demandeTotal,
     };
   });
-  // console.log("totalDemandDataFormated", totalDemandDataFormated);
+  
 
   const roundedTimesArray = totalDemandDataFormated.filter((item) => {
     const [hour, minute, second] = item.time === undefined ? "00:00:00" : item.time.split(":");
     return parseInt(minute) === 0 && parseInt(second) === 0;
   });
-  // console.log("ROUNDEDTIMESARRAY", roundedTimesArray);
 
- 
 
   const labels = roundedTimesArray.map((td_item) => {
     return td_item.time;

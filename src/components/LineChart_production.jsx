@@ -37,7 +37,7 @@ const LineChart_production = ({ productionData, showProductionLine }) => {
         data: productionData.map((pd_item) => {
           return Math.log10(pd_item.valeurs.eolien);
         }),
-        fill: false,
+        fill: false, 
         borderColor: "#bc5090",
         backgroundColor: "#bc5090",
         tension: 0.1,

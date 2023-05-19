@@ -32,42 +32,42 @@ const BarChart_production = ({ productionData, showProductionBar }) => {
       {
         label: "total",
         data: productionData.map((pd_item) => {
-          return [pd_item.valeurs.total];
+          return pd_item.valeurs.total;
         }),
         backgroundColor: "rgb(75, 192, 192)",
       },
       {
         label: "hydraulique",
         data: productionData.map((pd_item) => {
-          return [pd_item.valeurs.hydraulique];
+          return pd_item.valeurs.hydraulique;
         }),
         backgroundColor: "rgb(255, 205, 86)",
       },
       {
         label: "eolien",
         data: productionData.map((pd_item) => {
-          return [pd_item.valeurs.eolien];
+          return pd_item.valeurs.eolien;
         }),
         backgroundColor: ["rgb(54, 162, 235)"],
       },
       {
         label: "autres",
         data: productionData.map((pd_item) => {
-          return [pd_item.valeurs.autres];
+          return pd_item.valeurs.autres;
         }),
         backgroundColor: "rgb(153, 102, 255)",
       },
       {
         label: "solaire",
         data: productionData.map((pd_item) => {
-              return [pd_item.valeurs.solaire];
+              return pd_item.valeurs.solaire;
         }),
         backgroundColor: "rgb(095, 113, 111)",
       },
       {
         label: "thermique",
         data: productionData.map((pd_item) => {
-           return [pd_item.valeurs.thermique];
+           return pd_item.valeurs.thermique;
         }),
         backgroundColor: "rgb(010, 010, 132)",
       },

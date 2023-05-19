@@ -9,7 +9,7 @@ const GridView_production = ({ productionData, showProductionGrid }) => {
       field: "id",
       headerName: "ID",
       flex: 1,
-      headerClassName: "bg-darkBlue hover:text-white text-white  text-lg font-bold",
+      headerClassName: "bg-darkGreen hover:text-white text-white  text-lg font-bold",
     },
     {
       field: "day",
@@ -85,7 +85,7 @@ const GridView_production = ({ productionData, showProductionGrid }) => {
     <div className={showProductionGrid ? "block" : "hidden"}>
       <div className=" flex justify-center align-middle py-8 font-medium text-amber-500">
         <AiOutlineStock size={30} />
-        <h2 className="ml-2 pt-1">GRID FOR PRODUCTION</h2>
+        <h2 className="ml-2 pt-1">GRID VIEW FOR PRODUCTION</h2>
       </div>
 
       <div style={{ minHeight: "20em", minWidth: "22em" }}>

@@ -1,46 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import GridView_totalDemand from "./components/GridView_totalDemand";
-import LineChart_totalDemand from "./components/LineChart_totalDemand";
-import BarChart_totalDemand from "./components/BarChart_totalDemand";
-import GridView_production from "./components/GridView_production";
-import BarChart_production from "./components/BarChart_production";
-import LineChart_production from "./components/LineChart_production";
-import ThreeShiftBarChart_totalDemand from "./components/ThreeShiftBarChart_totalDemand";
-import ThreeShiftLineChart_totalDemand from "./components/ThreeShiftLineChart_totalDemand";
-import StackBarChart_production from "./components/StackBarChart_production";
-import IntroPage from "./components/IntroPage";
+import {
+  GridView_totalDemand, GridView_production, LineChart_totalDemand, 
+  BarChart_totalDemand, BarChart_production, LineChart_production,
+  StackBarChart_production,ThreeShiftBarChart_totalDemand,
+  ThreeShiftLineChart_totalDemand, IntroPage } from './components'
 import Logo from "./assets/TEC-logo.jpeg";
 import { SlEnergy } from "react-icons/sl";
 import { FaGithub } from "react-icons/fa";
 
 function App() {
-  // Data for Total Demand
-  const [totalDemandArr, setTotalDemandArr] = useState([]);
-
-  // Data for Productions
-  const [productionArr, setProductionArr] = useState([]);
-
-  // Fetch Data from Two End Points
-  const totalDemandAPI = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json";
-  const productionAPI = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json";
-
-  useEffect(() => {
-    Promise.all([fetch(totalDemandAPI), fetch(productionAPI)])
-      .then(([resTotalDemand, resProduction]) => Promise.all([resTotalDemand.json(), resProduction.json()]))
-      .then(([data_total, data_production]) => {
-        setTotalDemandArr(data_total.details);
-        setProductionArr(data_production.details);
-      });
-  }, []);
-
-  const totalDemandData = totalDemandArr.map((totalDemandItem) => {
-    return totalDemandItem;
-  });
-  const productionData = productionArr.map((productionItem) => {
-    return productionItem;
-  });
-
+  
   // SideBar Actions Handling
   const [showTotalLine, setShowTotalLine] = useState(false);
   const [showProductionLine, setShowProductionLine] = useState(false);
@@ -65,9 +35,26 @@ function App() {
     setShowThreeShiftTotalLineChart(false);
     setShowIntroPage(false);
     setChart(true);
-    // console.log("YES")
   };
 
+  // Data for Total Demand
+  const [totalDemandData, setTotalDemandData] = useState([]);
+  // Data for Productions
+  const [productionData, setProductionData] = useState([]);
+
+  // Fetch Data from Two End Points
+  const totalDemandAPI = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json";
+  const productionAPI = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json";
+
+  useEffect(() => {
+    Promise.all([fetch(totalDemandAPI), fetch(productionAPI)])
+      .then(([resTotalDemand, resProduction]) => Promise.all([resTotalDemand.json(), resProduction.json()]))
+      .then(([data_total, data_production]) => {
+        setTotalDemandData(data_total.details);
+        setProductionData(data_production.details);
+      });
+  }, []);
+ 
   return (
     <div className="flex flex-col lg:flex-row h-screen">
       {/* Sidebar */}

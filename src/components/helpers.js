@@ -17,8 +17,8 @@ export function getTimeTotalDemandData(totalDemandData) {
 }
 
 // used in Grid View components
-export function separateDayAndTime(date) {
-    const dateString = date;
+export function separateDayAndTime(item) {
+    const dateString = item.date;
     const momentObj = moment(dateString, "YYYY/M/D, h:mm:ss A");
     const dayString = momentObj.format("YYYY/M/D");
     const timeString = momentObj.format("h:mm:ss A");
